@@ -1,29 +1,29 @@
 const router = require('express').Router();
-const { Project } = require('../../models');
+const { Post } = require('../../models');
 
 router.get('/', async (req, res) => {
-  const projectData = await Project.findAll();
-  console.log(projectData);
+  const postData = await Post.findAll();
+  console.log(postData);
 
-  if (!projectData) return res.status(404).json({ data: null });
+  if (!postData) return res.status(404).json({ data: null });
 
-  const projects = projectData.map((project) => project.get({ plain: true }));
-  console.log(projects);
+  const posts = postData.map((post) => post.get({ plain: true }));
+  console.log(posts);
 
-  res.render('homepage', { projects });
+  res.render('homepage', { posts });
 });
 
 router.get('/:id', async (req, res) => {
-  const projectData = await Project.findByPk(req.params.id);
+  const postData = await post.findByPk(req.params.id);
 
-  const post = projectData.get({ plain: true });
+  const post = postData.get({ plain: true });
 
   res.render('post', post);
 });
 
 router.post('/', async (req, res) => {
   try {
-    const newPost = await Project.create({
+    const newPost = await Post.create({
       ...req.body,
       user_id: req.session.user_id,
     });
@@ -36,19 +36,19 @@ router.post('/', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   try {
-    const projectData = await Project.destroy({
+    const postData = await Post.destroy({
       where: {
         id: req.params.id,
         user_id: req.session.user_id,
       },
     });
 
-    if (!projectData) {
+    if (!postData) {
       res.status(404).json({ message: 'No post found with this id!' });
       return;
     }
 
-    res.status(200).json(projectData);
+    res.status(200).json(postData);
   } catch (err) {
     res.status(500).json(err);
   }
