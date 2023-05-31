@@ -20,10 +20,8 @@ const sess = {
   }),
 };
 
-// Create the Handlebars.js engine object with custom helper functions
 const hbs = exphbs.create();
 
-// Inform Express.js which template engine we're using
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
