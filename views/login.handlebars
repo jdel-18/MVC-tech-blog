@@ -1,7 +1,25 @@
-<form class="login-form">
-  <input id="email-login" type="text"/>
-  <input id="password-login" type="password" />
-  <button type="submit">Login</button>
-</form>
-
-<script src="./js/login.js"></script>
+<div class="row justify-content-center">
+  <div class="col-md-3">
+    <div class="card my-3">
+      <div class="card-body">
+        <h3 class="card-title">Existing User Login</h3>
+        <form class="login-form">
+          <div class="mb-3">
+            <label for="email-login">Email:</label>
+            <input class="form-control" type="email" id="email-login" />
+          </div>
+          <div class="mb-3">
+            <label for="password-login">Password:</label>
+            <input class="form-control" type="password" id="password-login" />
+          </div>
+          <div class="mb-3">
+            <button class="btn btn-primary" type="submit">login</button>
+            <a class="btn btn-primary" href="/signup" role="button">Not a Member? Click to Signup</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{!-- helper to do User login --}}
+<script src="/js/login.js"></script>
