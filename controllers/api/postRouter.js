@@ -1,6 +1,7 @@
-const { User, Post, Comment } = require('./models');
+const { User, Post, Comment } = require('../../models');
 const router = require('express').Router();
-const withAuth = require('./utils/auth.js');
+const withAuth = require('../../utils/auth');
+
 
 router.post('/new', withAuth, async (req, res) => {
     try {
@@ -9,7 +10,7 @@ router.post('/new', withAuth, async (req, res) => {
             post_content: req.body.post_content,
             user_id: req.session.user_id
         });
-        res.redirect('/api/dashboard')
+        res.redirect('/dashboard');
         } catch(err) {
             console.log(err);
             res.status(500).json(err);
@@ -32,7 +33,7 @@ router.post('/update/', withAuth, async (req, res) => {
             return;
         }
 
-        res.redirect('/api/dashboard');
+        res.redirect('/dashboard');
     } catch(err) {
             console.log(err);
 
@@ -53,7 +54,7 @@ router.delete('/:id', withAuth, async (req, res) => {
             return;
         }
 
-        res.status(200).json(postData);
+        res.status(200).end();
     } catch (err) {
         console.log(err);
 

@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 router.get('/login', async (req, res) => {
   console.log('login route hit');
-  res.render('login');
+  res.send('login');
 });
 
 module.exports = router;
